@@ -47,4 +47,11 @@ class Bank:
         """Add funds to the named account"""
         account = self.get_account(name)
         now = datetime.now()
+
+        if type(amount) != int:
+            raise TypeError('Amount must be numeric')            
+
+        if amount <= 0:
+            raise ValueError('Amount must be > 0')
+            
         self._transactions.add(Transaction(account, now, amount))
